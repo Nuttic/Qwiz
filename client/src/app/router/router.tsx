@@ -6,33 +6,36 @@ import { ROUTES } from './routes';
 
 // import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
 import React from 'react';
+import { MainPage } from '@/pages/MainPage/MainPage';
+import { LoginPage, RegistrPage } from '@/pages';
+import Layout from './layout/Layout';
 
 export const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
-    // element: <Layout/>,
+    element: <Layout/>,
     children: [
-    //   {
-    //     path: ROUTES.HOME,
-    //     element: <MainPage />,
-    //   },
-    //   {
-    //     path: ROUTES.LOGIN,
-    //     element: <LoginPage />,
-    //   },
-    //   {
-    //     path: ROUTES.REGISTR,
-    //     element: <RegistrPage />,
-    //   },
-    //   {
-    //     path: ROUTES.TOPICS,
-    //     element: (
-        //   <ProtectedRoute>
-    //         <TopicPage />
+      {
+        path: ROUTES.HOME,
+        element: <MainPage />,
+      },
+      {
+        path: ROUTES.LOGIN,
+        element: <LoginPage />,
+      },
+      {
+        path: ROUTES.REGISTR,
+        element: <RegistrPage />,
+      },
+      // {
+      //   path: ROUTES.TOPICS,
+      //   element: (
+      //     <ProtectedRoute>
+      //       <TopicPage />
        
-        //   </ProtectedRoute>
-    //     ),
-    //   },
+      //     </ProtectedRoute>
+      //   ),
+      // },
     ],
   },
 ]);

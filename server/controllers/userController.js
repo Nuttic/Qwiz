@@ -7,9 +7,6 @@ exports.registr =  async (req, res) => {
   try {
     const { name, email, password} = req.body;
 
-    console.log(name, email, password, );
-
-    
     if(name.trim() !== '' && email.trim() !== '' && password.trim() !== ''){
         const hashPassword = await bcrypt.hash(password, 10);
         const data  = { 
@@ -18,10 +15,8 @@ exports.registr =  async (req, res) => {
             password: hashPassword,
           }
     
-        
         const user = await UserServices.createUser(data);
-            console.log(user.get({plain: true}));
-            
+        
         if (user) {
     
            res.locals.user = user
