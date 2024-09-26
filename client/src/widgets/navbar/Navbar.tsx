@@ -2,41 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/app/router/routes";
 // import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
-// import { logout } from '@/entities/user';
+import { logout } from '@/entities/user';
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import { Button } from "antd";
 
 export const Navbar: React.FC = () => {
-  //   const {user, loading} = useAppSelector((state) => state.user)
-  //   const dispatch = useAppDispatch()
+    const {user, loading} = useAppSelector((state) => state.user)
+    const dispatch = useAppDispatch()
 
-  //   const handleLogout = () => {
-  //     dispatch(logout())
-  //   }
+    const handleLogout = () => {
+      dispatch(logout())
+    }
 
   return (
     <>
       <h1>Navbar</h1>
       <div>
         <span>
+          <Button>
           <Link to={ROUTES.HOME}>Home</Link>
+          </Button>
         </span>
         <span>
+          <Button>
           <Link to={ROUTES.TOPICS}>Wishes</Link>
+          </Button>
         </span>
 
-        {true ? (
+        {user ? (
           <>
-            {/* <h1>{user.name}</h1> */}
-            {/* <UserCard user={user} /> */}
-            <span>Logout</span>
+            <Button onClick={handleLogout}>Logout</Button>
           </>
         ) : (
           <>
             <span>
-              <Link to={ROUTES.LOGIN}>Login</Link>
+              <Button>
+              <Link to={ROUTES.LOGIN}>Log In</Link>
+              </Button>
             </span>
 
             <span>
-              <Link to={ROUTES.REGISTR}>Registr</Link>
+              <Button>
+              <Link to={ROUTES.REGISTR}>Sign Up</Link>
+              </Button>
             </span>
           </>
         )}
