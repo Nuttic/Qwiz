@@ -3,11 +3,8 @@ export type User = {
     name: string;
     email:string;
     password: string;
-    score: number;
     createdAt: Date;
     updatedAt: Date;
-    accessToken: string;
-    user: User;
 }
 
 export type AuthResponse = {

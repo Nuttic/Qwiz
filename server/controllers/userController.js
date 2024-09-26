@@ -1,93 +1,80 @@
 const UserServices = require("../services/UserServices");
 const bcrypt = require("bcrypt");
 const generateTokens = require("../utils/authUtils");
+const jwtConfig = require("../config/jwtConfig");
 
-exports.registr =  async (req, res) => {
-
+exports.registr = async (req, res) => {
   try {
-    const { name, email, password} = req.body;
-
-    if(name.trim() !== '' && email.trim() !== '' && password.trim() !== ''){
-        const hashPassword = await bcrypt.hash(password, 10);
-        const data  = { 
-            name,
-            email,
-            password: hashPassword,
-          }
-    
-        const user = await UserServices.createUser(data);
-        
-        if (user) {
-    
-           res.locals.user = user
-          delete user.dataValues.password;
-    
-          
-    
-          const { accessToken, refreshToken } = generateTokens({user});
-          res
-            .status(201)
-            .cookie("refreshToken", refreshToken, {
-              httpOnly: true,
-              maxAge: 1000 * 60 * 60 * 12,
-            })
-            .json({ message: "success", accessToken, user });
-        }
+    const { name, email, password, cookingExp } = req.body;
+    if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
+      console.log("Заполни все поля!");
+      return res.status(400).json({ message: "Заполни все поля!" });
     }
-   
-  } catch ({ message }) {
-    res.status(500).json({ message });
+    let user = await UserServices.getUserByEmail(email);
+    if (!user) {
+      user = await UserServices.addUser({
+        name,
+        email,
+        password: await bcrypt.hash(password, 8),
+        cookingExp,
+      });
+
+      delete user.password;
+      res.locals.user = user;
+      const { accessToken, refreshToken } = generateTokens({ user });
+      res
+        .status(201)
+        .cookie(jwtConfig.refresh.type, refreshToken, {
+          httpOnly: true,
+          maxAge: jwtConfig.refresh.expiresIn,
+        })
+        .json({ user, accessToken });
+      return;
+    }
+    res.status(400).json({ message: "Такой пользователь уже существует!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-}
+};
 
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if(email.trim() !== '' && password.trim() !== '' ) {
-        const user = await UserServices.getUser(email);
-        if (user) {
-          const compare = await bcrypt.compare(password, user.password);
-    
-          if (compare) {
-            res.locals.user = user
-            console.log(res.locals.user.get({plain: true}));
-            
-            delete user.dataValues.password;
-            const { accessToken, refreshToken } = generateTokens({user});
-    
-    
-            console.log(1234567890);
-            
-            res
-              .status(200)
-              .cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                maxAge: 1000 * 60 * 60 * 12,
-              })
-              .json({ message: "success", accessToken, user });
-              console.log('yes');
-              return
-              
-          }
-        }
-    
-        res.status(400).json({ message: "email или пароль неверные" });
-        return
+    if (email.trim() === "" || password.trim() === "") {
+      console.log("Заполни все поля!");
+      return;
     }
-
-  
+    const user = await UserServices.getUserByEmail(email);
+    if (user) {
+      const compare = await bcrypt.compare(password, user.password);
+      if (compare) {
+        delete user.password;
+        res.locals.user = user;
+        const { accessToken, refreshToken } = generateTokens({ user });
+        res
+          .status(200)
+          .cookie(jwtConfig.refresh.type, refreshToken, {
+            httpOnly: true,
+            maxAge: jwtConfig.refresh.expiresIn,
+          })
+          .json({ user, accessToken });
+        return;
+      }
+    }
+    res.status(400).json({ message: "Почта или пароль введены неверно!" });
   } catch ({ message }) {
-    res.status(500).json({ message });
+    res.status(500).json({ error: message });
   }
-}
+};
 
 exports.logout = async (req, res) => {
   try {
-    res.locals.user = undefined;
-    res.clearCookie("refreshToken").status(200).json({ message: "success" });
+    res.locals.user = null;
+    res
+      .clearCookie("refreshToken")
+      .status(200)
+      .json({ message: "Успешный выход!" });
   } catch ({ message }) {
-    res.status(500).json({ message });
+    res.status(500).json({ error: message });
   }
-}
-
-
+};
