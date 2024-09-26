@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/app/router/routes';
-import { selectUserLoading, useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/app/router/routes";
+import {
+  selectUserLoading,
+  useAppDispatch,
+  useAppSelector,
+} from "@/shared/hooks/reduxHooks";
 import { login } from "@/entities/user";
-import { unwrapResult } from '@reduxjs/toolkit';
+import { unwrapResult } from "@reduxjs/toolkit";
 
 export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +31,7 @@ export const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Email:
+        Почта:
         <input
           type="email"
           value={email}
@@ -35,7 +39,7 @@ export const LoginForm: React.FC = () => {
         />
       </label>
       <label>
-        Password:
+        Пароль:
         <input
           type="password"
           value={password}
@@ -43,7 +47,7 @@ export const LoginForm: React.FC = () => {
         />
       </label>
       <button type="submit" disabled={loading}>
-        {loading ? "Loging In..." : "Login"}
+        {loading ? "Входим в систему..." : "Войти"}
       </button>
     </form>
   );

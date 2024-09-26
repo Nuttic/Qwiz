@@ -70,40 +70,25 @@ export const RegistrForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>
-        Name:
-        <input
-          
-          placeholder="Enter your name"
-          {...register("name")}
-        />
+        Имя:
+        <input placeholder="Введите ваше имя" {...register("name")} />
         {getStatusIcon("name")}
       </label>
       {errors.name && <p>{errors.name.message}</p>}
       <label>
-        Email:
-        <input
-          placeholder="Enter your email"
-          {...register("email")}
-        />
+        Почта:
+        <input placeholder="Введите вашу почту" {...register("email")} />
         {getStatusIcon("email")}
       </label>
       {errors.email && <p>{errors.email.message}</p>}
       <label>
-        Password:
-        <input
-          placeholder="Enter your Password"
-          {...register("password")}
-        />
+        Пароль:
+        <input placeholder="Введите ваш пароль" {...register("password")} />
         {getStatusIcon("password")}
       </label>
-      {errors.password && (
-        <p>{errors.password.message}</p>
-      )}
-      <button
-        type="submit"
-        disabled={!isValid || loading}
-      >
-        {loading ? "Signing Up..." : "Sign up"}
+      {errors.password && <p>{errors.password.message}</p>}
+      <button type="submit" disabled={!isValid || loading}>
+        {loading ? "Регистрируюсь..." : "Войти"}
       </button>
     </form>
   );
