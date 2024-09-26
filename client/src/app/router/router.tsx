@@ -27,10 +27,10 @@ export const router = createBrowserRouter([
     //   {
     //     path: ROUTES.TOPICS,
     //     element: (
-    //     //   <ProtectedRoute>
+        //   <ProtectedRoute>
     //         <TopicPage />
        
-    //     //   </ProtectedRoute>
+        //   </ProtectedRoute>
     //     ),
     //   },
     ],
