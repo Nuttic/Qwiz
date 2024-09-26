@@ -1,13 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom';
-// import {MainPage, LoginPage, RegistrPage, TopicPage} from '@/pages'
-import { ROUTES } from './routes';
-// import Layout from './Layout/Layput';
-// import React from 'react';
-
+import { createBrowserRouter } from "react-router-dom";
+import { MainPage, LoginPage, RegistrPage } from "@/pages";
+import { ROUTES } from "./routes";
 // import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
-import React from 'react';
-import { MainPage } from '@/pages/MainPage/MainPage';
-import { LoginPage, RegistrPage } from '@/pages';
+
+import React from "react";
+import { PublicRoute } from "@/shared/ui";
 import Layout from './layout/Layout';
 
 export const router = createBrowserRouter([
@@ -21,21 +18,30 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES.LOGIN,
-        element: <LoginPage />,
+        element: (
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        ),
       },
       {
         path: ROUTES.REGISTR,
-        element: <RegistrPage />,
+        element: (
+          <PublicRoute>
+            <RegistrPage />
+          </PublicRoute>
+        ),
       },
-      // {
-      //   path: ROUTES.TOPICS,
-      //   element: (
-      //     <ProtectedRoute>
-      //       <TopicPage />
-       
-      //     </ProtectedRoute>
-      //   ),
-      // },
+      //   {
+      //     path: ROUTES.TOPICS,
+      //     element: (
+      //   <ProtectedRoute>
+      //         <TopicPage />
+
+      //   </ProtectedRoute>
+      //     ),
+      //   },
+
     ],
   },
 ]);
