@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 // import {MainPage, LoginPage, RegistrPage, TopicPage} from '@/pages'
-import { ROUTES } from './router';
+import { ROUTES } from './routes';
 // import Layout from './Layout/Layput';
 // import React from 'react';
 
 // import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
+import React from 'react';
 
 export const router = createBrowserRouter([
   {
