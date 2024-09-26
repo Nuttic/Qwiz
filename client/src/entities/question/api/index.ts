@@ -3,7 +3,7 @@ import { QuestionResponse } from '../model';
 
 export class QuestionService {
 
-    static async getTopic(topicId: number, id: number): Promise<QuestionResponse> {
+    static async getQuestion(topicId: number, id: number): Promise<QuestionResponse> {
         try {
           const response = await axiosInstance.get(`/topics/${topicId}/questions/${id}`);
           return response.data;
