@@ -1,17 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import { MainPage, LoginPage, RegistrPage } from "@/pages";
 import { ROUTES } from "./routes";
-import Layout from "./layout/index";
-// import React from 'react';
-
 // import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
+
 import React from "react";
 import { PublicRoute } from "@/shared/ui";
+import Layout from './layout/Layout';
 
 export const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
-    element: <Layout />,
+    element: <Layout/>,
     children: [
       {
         path: ROUTES.HOME,
@@ -42,6 +41,7 @@ export const router = createBrowserRouter([
       //   </ProtectedRoute>
       //     ),
       //   },
+
     ],
   },
 ]);

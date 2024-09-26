@@ -1,4 +1,4 @@
-import styles from "./RegistrForm.module.css";
+// import styles from "./RegistrForm.module.css";
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -59,50 +59,47 @@ export const RegistrForm: React.FC = () => {
 
   const getStatusIcon = (fieldName: keyof IFormInputs) => {
     if (errors[fieldName]) {
-      return <span className={styles.icon}>🔴</span>;
+      return <span>🔴</span>;
     }
     if (getValues()[fieldName] && !errors[fieldName]) {
-      return <span className={styles.icon}>✅</span>;
+      return <span>✅</span>;
     }
     return null;
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label>
         Name:
         <input
-          className={styles.input}
+          
           placeholder="Enter your name"
           {...register("name")}
         />
         {getStatusIcon("name")}
       </label>
-      {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+      {errors.name && <p>{errors.name.message}</p>}
       <label>
         Email:
         <input
-          className={styles.input}
           placeholder="Enter your email"
           {...register("email")}
         />
         {getStatusIcon("email")}
       </label>
-      {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+      {errors.email && <p>{errors.email.message}</p>}
       <label>
         Password:
         <input
-          className={styles.password}
           placeholder="Enter your Password"
           {...register("password")}
         />
         {getStatusIcon("password")}
       </label>
       {errors.password && (
-        <p className={styles.error}>{errors.password.message}</p>
+        <p>{errors.password.message}</p>
       )}
       <button
-        className={styles.button}
         type="submit"
         disabled={!isValid || loading}
       >
