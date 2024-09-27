@@ -5,12 +5,13 @@ import { ROUTES } from "./routes";
 
 import React from "react";
 import { PublicRoute } from "@/shared/ui";
-import Layout from './layout/Layout';
+import Layout from "./layout/Layout";
+import ErrorPage from "@/pages/error/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: ROUTES.HOME,
@@ -41,7 +42,14 @@ export const router = createBrowserRouter([
       //   </ProtectedRoute>
       //     ),
       //   },
-
+      {
+        path: ROUTES.ERROR,
+        element: (
+          <PublicRoute>
+            <ErrorPage />
+          </PublicRoute>
+        ),
+      },
     ],
   },
 ]);

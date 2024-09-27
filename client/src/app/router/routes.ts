@@ -3,4 +3,5 @@ export enum ROUTES {
     REGISTR = '/registr',
     LOGIN  = '/login',
     TOPICS = '/topics',
+    ERROR = '*'
   }
