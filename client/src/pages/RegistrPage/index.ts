@@ -1,0 +1,1 @@
+export { RegistrPage } from './RegistrPage';
