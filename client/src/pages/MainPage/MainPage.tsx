@@ -1,7 +1,5 @@
 import { ROUTES } from "@/app/router/routes";
-
 import { Button } from "antd";
-import React from "react";
 import { getAllTopics, getOneTopic } from "@/entities/topic/model/topicThunks";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { useEffect } from "react";

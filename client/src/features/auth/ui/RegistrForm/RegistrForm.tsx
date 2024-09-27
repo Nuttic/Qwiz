@@ -1,11 +1,7 @@
 import React from "react";
 import type { FormProps } from "antd";
 import { Button, Form, Input } from "antd";
-import {
-  selectUserLoading,
-  useAppDispatch,
-  useAppSelector,
-} from "@/shared/hooks/reduxHooks";
+import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { registr } from "@/entities/user";
 import { unwrapResult } from "@reduxjs/toolkit";
@@ -20,7 +16,6 @@ type RegistrFormData = {
 export const RegistrForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const loading = useAppSelector(selectUserLoading);
 
   const onFinish: FormProps<RegistrFormData>["onFinish"] = async (
     values: RegistrFormData

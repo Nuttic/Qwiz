@@ -1,11 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { MainPage, LoginPage, RegistrPage, TopicPage } from "@/pages";
 import { ROUTES } from "./routes";
-
 import Layout from "./layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
-
-import React from "react";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
 import ErrorPage from "@/pages/error/ErrorPage";
 

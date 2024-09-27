@@ -17,8 +17,8 @@ export const TopicItem: React.FC<TopicItemProps> = ({ id }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-      dispatch(getOneTopic({ id }));
-  }, [dispatch, id, topic]);
+    dispatch(getOneTopic({ id }));
+  }, [dispatch, id]);
 
   const [activeQuestionId, setActiveQuestionId] = useState<number | null>(null);
 
