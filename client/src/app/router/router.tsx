@@ -4,7 +4,7 @@ import { ROUTES } from "./routes";
 // import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
 
 import React from "react";
-import { PublicRoute } from "@/shared/ui";
+import { PublicRoute } from "@/shared/ui/PublicRoute";
 import Layout from './layout/Layout';
 
 export const router = createBrowserRouter([
