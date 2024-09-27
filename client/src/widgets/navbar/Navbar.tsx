@@ -5,10 +5,16 @@ import { ROUTES } from "@/app/router/routes";
 import { logout } from "@/entities/user";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { Button } from "antd";
+import { useScore } from "@/app/scoreContext";
 
 export const Navbar: React.FC = () => {
   const { user, loading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+
+  const { score } = useScore()
+
+    
+            
 
   const handleLogout = () => {
     dispatch(logout());
@@ -32,6 +38,7 @@ export const Navbar: React.FC = () => {
 
         {user ? (
           <>
+          <span>Текущий счет: {score}</span>
             <Button className={styles.button} onClick={handleLogout}>
               Выход
             </Button>
