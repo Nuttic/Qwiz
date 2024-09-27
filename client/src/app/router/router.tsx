@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import { MainPage, LoginPage, RegistrPage } from "@/pages";
+import { MainPage, LoginPage, RegistrPage, TopicPage } from "@/pages";
 import { ROUTES } from "./routes";
-// import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
+
+import Layout from "./layout/Layout";
+import { ProtectedRoute } from "@/shared/ui/ProtectedRoute"
 
 import React from "react";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
-import Layout from "./layout/Layout";
 import ErrorPage from "@/pages/error/ErrorPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -33,15 +35,16 @@ export const router = createBrowserRouter([
           </PublicRoute>
         ),
       },
-      //   {
-      //     path: ROUTES.TOPICS,
-      //     element: (
-      //   <ProtectedRoute>
-      //         <TopicPage />
 
-      //   </ProtectedRoute>
-      //     ),
-      //   },
+      {
+        path: ROUTES.TOPICS,
+        element: (
+          <ProtectedRoute>
+            <TopicPage />
+          </ProtectedRoute>
+
+         ),
+       },
       {
         path: ROUTES.ERROR,
         element: (
