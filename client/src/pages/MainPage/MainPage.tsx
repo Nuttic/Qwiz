@@ -1,5 +1,7 @@
 import { ROUTES } from "@/app/router/routes";
+
 import { Button } from "antd";
+import React from "react";
 import { getAllTopics, getOneTopic } from "@/entities/topic/model/topicThunks";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { useEffect } from "react";
@@ -19,13 +21,12 @@ export function MainPage() {
     <div className={styles.container}>
       {user ? (
         <>
-          <h1>Привет, {user.name}!</h1>
-          <h2>
-            <Button className={styles.button}>
-              <Link to={ROUTES.TOPICS}>Нажми сюда,</Link>
-            </Button>
-            ← чтобы перейти к выбору темы
-          </h2>
+          <h1 className={styles.title}>Привет, {user.name}!</h1>
+          <Button className={styles.button}>
+            <Link to={ROUTES.TOPICS}>Нажми сюда</Link>
+          </Button>
+          <h2 className={styles.message}>↑</h2>
+          <h2 className={styles.message}>чтобы перейти к выбору темы</h2>
         </>
       ) : (
         <>
