@@ -31,7 +31,7 @@ export const TopicItem: React.FC<TopicItemProps> = ({ id }) => {
 
   return (
     <div className={styles.container}>
-      <h1>{topic.title}</h1>
+      <h1 className={styles.title}>{topic.title}</h1>
       {questions?.map((quest, index) => (
         <div className={styles.que} key={quest.id}>
           <button

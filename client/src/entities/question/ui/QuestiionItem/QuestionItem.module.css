@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .button {
@@ -22,9 +24,11 @@
 }
 
 .img {
+    align-items: center;
     justify-content: center;
-    width: 30vw;
-
+    width: 400px;
+    height: 400px;
+    margin: 10px;
 }
 
 .goodAnswer {

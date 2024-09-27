@@ -1,4 +1,5 @@
 .question {
+    font-size: 30px;
     width: 250px;
     background-color: var(--primary-light-gray);
     border: 2px solid var(--secondary-blue-64);
@@ -14,4 +15,22 @@
 
 .container {
     display: flex;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    width: 300px;
+    height: 100px;
+    background-color: var(--primary-light-gray);
+    border: 2px solid var(--secondary-blue-64);
+    border-radius: 8px;
+    padding: 10px;
+    /* margin: 25px 25px; */
+    transition: background-color 0.3s;
+}
+
+.title:hover {
+    background-color: var(--secondary-blue-64);
 }
