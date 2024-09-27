@@ -22,11 +22,13 @@ export const Navbar: React.FC = () => {
             <Link to={ROUTES.HOME}>Главная</Link>
           </Button>
         </span>
-        <span>
-          <Button className={styles.button}>
-            <Link to={ROUTES.TOPICS}>Темы</Link>
-          </Button>
-        </span>
+        {user && (
+          <span>
+            <Button className={styles.button}>
+              <Link to={ROUTES.TOPICS}>Темы</Link>
+            </Button>
+          </span>
+        )}
 
         {user ? (
           <>
