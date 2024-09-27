@@ -23,7 +23,7 @@ const ErrorPage: React.FC = () => {
         </Link>
       </h1>
       <p>Страница не найдена</p>
-      <img src={media} style={{width: '80vw'}} alt="404 Error" />
+      <img src={media} style={{width: '45vw'}} alt="404 Error" />
     </div>
   );
 };
