@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { QuestionItem } from "@/entities/question/ui/QuestiionItem/QuestionItem";
 import ModalWindow from "@/shared/ui/Modal/Modal";
+import styles from "./TopicItem.module.css";
 import { getOneTopic } from "@/entities/topic/model/topicThunks";
 
 interface TopicItemProps {
@@ -29,11 +30,14 @@ export const TopicItem: React.FC<TopicItemProps> = ({ id }) => {
   const questions = topic.Questions;
 
   return (
-    <div>
-      <h1>{topic.title}</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>{topic.title}</h1>
       {questions?.map((quest, index) => (
-        <div key={quest.id}>
-          <button onClick={() => setActiveQuestionId(quest.id)}>
+        <div className={styles.que} key={quest.id}>
+          <button
+            className={styles.question}
+            onClick={() => setActiveQuestionId(quest.id)}
+          >
             {scores[index]}
           </button>
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import styles from "./TaskItem.module.css";
+import styles from "./QuestionItem.module.css";
 import { Question } from "../../model";
+
 import { useScore } from "@/app/scoreContext";
+
+import { Button } from "antd";
 
 type Props = {
   question: Question;
@@ -30,26 +33,41 @@ export const QuestionItem: React.FC<Props> = ({ question }) => {
 
   return (
     <>
-      <img src={question.img} alt={question.title} style={{ width: 200 }} />
-      <h4>{question.title}</h4>
+      <div className={styles.container}>
+        <img
+          className={styles.img}
+          src={question.img}
+          alt={question.title}
+          // style={{ width: 200 }}
+        />
+        <h4 className={styles.question}>{question.title}</h4>
 
-      <input
-        placeholder="Твой ответ"
-        value={userAnswer}
-        onChange={(e) => setUserAnswer(e.target.value)}
-      />
-      <button onClick={() => compareAnswers(userAnswer)}>Ответить</button>
+        <input
+          className={styles.input}
+          placeholder="Твой ответ"
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
+        />
+        <Button
+          className={styles.button}
+          onClick={() => compareAnswers(userAnswer)}
+        >
+          Ответить
+        </Button>
 
-      {/* Отображаем сообщение только если ответ был дан */}
-      {isAnswered && (
-        <>
-          {answer === true ? (
-            <div>Верно!</div>
-          ) : (
-            <div>Неправильно, правильный ответ - {question.answer}</div>
-          )}
-        </>
-      )}
+        {/* Отображаем сообщение только если ответ был дан */}
+        {isAnswered && (
+          <>
+            {answer === true ? (
+              <div className={styles.goodAnswer}>Верно!</div>
+            ) : (
+              <div className={styles.badAnswer}>
+                Неправильно, правильный ответ - {question.answer}
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 };

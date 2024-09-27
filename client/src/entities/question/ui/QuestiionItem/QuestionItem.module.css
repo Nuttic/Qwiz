@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 250px;
+    font-size: 30px;
+    margin: 0px 0px 20px 0px;
+    padding: 20px 10px;
+}
+
+.input {
+    margin: 15px 0px;
+    padding: 5px 10px;
+    font-size: 30px;
+    border: 2px solid var(--secondary-blue-64);
+    width: 250px;
+}
+
+.question {
+    margin: 10px 0px 10px 0px;
+    font-size: 30px;
+}
+
+.img {
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+}
+
+.goodAnswer {
+    font-size: 30px;
+    color: var(--primary-basic-blue);
+}
+
+.badAnswer {
+    color: var(--primary-basic-red);
+    font-size: 30px;
+}

@@ -1,15 +1,18 @@
 import Loader from "@/shared/ui/Loader/Loader";
 import React, { Suspense } from "react";
+import styles from "./TopicPage.module.css";
 
 const LazyTopicList = React.lazy(() => import("@/widgets/TopicList"));
 
 export function TopicPage() {
   return (
-    <div>
-      <Suspense fallback={<Loader />}>
-        <LazyTopicList />
-      </Suspense>
-    </div>
+    <>
+      <div className={styles.container}>
+        <Suspense fallback={<Loader />}>
+          <LazyTopicList />
+        </Suspense>
+      </div>
+    </>
   );
 }
 
