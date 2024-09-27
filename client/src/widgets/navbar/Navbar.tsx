@@ -1,42 +1,50 @@
 import React from "react";
+import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/app/router/routes";
-// import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
-// import { logout } from '@/entities/user';
+import { logout } from "@/entities/user";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import { Button } from "antd";
 
 export const Navbar: React.FC = () => {
-  //   const {user, loading} = useAppSelector((state) => state.user)
-  //   const dispatch = useAppDispatch()
+  const { user, loading } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
-  //   const handleLogout = () => {
-  //     dispatch(logout())
-  //   }
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
-      <h1>Navbar</h1>
-      <div>
+      <div className={styles.container}>
         <span>
-          <Link to={ROUTES.HOME}>Home</Link>
+          <Button className={styles.button}>
+            <Link to={ROUTES.HOME}>Главная</Link>
+          </Button>
         </span>
         <span>
-          <Link to={ROUTES.TOPICS}>Wishes</Link>
+          <Button className={styles.button}>
+            <Link to={ROUTES.TOPICS}>Темы</Link>
+          </Button>
         </span>
 
-        {true ? (
+        {user ? (
           <>
-            {/* <h1>{user.name}</h1> */}
-            {/* <UserCard user={user} /> */}
-            <span>Logout</span>
+            <Button className={styles.button} onClick={handleLogout}>
+              Выход
+            </Button>
           </>
         ) : (
           <>
             <span>
-              <Link to={ROUTES.LOGIN}>Login</Link>
+              <Button className={styles.button}>
+                <Link to={ROUTES.LOGIN}>Войти</Link>
+              </Button>
             </span>
-
             <span>
-              <Link to={ROUTES.REGISTR}>Registr</Link>
+              <Button className={styles.button}>
+                <Link to={ROUTES.REGISTR}>Регистрация</Link>
+              </Button>
             </span>
           </>
         )}

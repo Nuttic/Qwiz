@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import styles from './Layout.module.css';
+import styles from './Layout.module.css';
 import { refreshAccessToken } from '@/entities/user';
 // import { Footer } from '@/widgets/Footer';
 import { Navbar } from '@/widgets/navbar/Navbar';
@@ -16,7 +16,7 @@ const Layout: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className={styles.container}>
         <Outlet />
       </main>
       {/* <Footer /> */}
