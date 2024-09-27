@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import styles from "./TaskItem.module.css";
 import { Question } from "../../model";
+import { useScore } from "@/app/scoreContext";
 
 type Props = {
   question: Question;
 };
 
 export const QuestionItem: React.FC<Props> = ({ question }) => {
+
+    const { incrementScore, decrementScore } = useScore();
   const [userAnswer, setUserAnswer] = useState("");
   const [answer, setAnswer] = useState<boolean | string>("");
   const [isAnswered, setIsAnswered] = useState(false); // новое состояние
@@ -18,8 +21,10 @@ export const QuestionItem: React.FC<Props> = ({ question }) => {
       userAnswer.toLowerCase() === question.answer.toLowerCase()
     ) {
       setAnswer(true);
+      incrementScore(question.points)
     } else {
       setAnswer(false);
+     decrementScore(question.points)
     }
   };
 
