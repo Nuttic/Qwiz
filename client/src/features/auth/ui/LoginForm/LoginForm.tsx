@@ -77,7 +77,7 @@ export const LoginForm: React.FC = () => {
   const loading = useAppSelector(selectUserLoading);
 
   const onFinish: FormProps<LogInFormData>["onFinish"] = async (
-    values: FormProps
+    values: LogInFormData
   ) => {
     try {
       const resultAction = await dispatch(login(values));

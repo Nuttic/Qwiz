@@ -23,7 +23,7 @@ export const RegistrForm: React.FC = () => {
   const loading = useAppSelector(selectUserLoading);
 
   const onFinish: FormProps<RegistrFormData>["onFinish"] = async (
-    values: FormProps
+    values: RegistrFormData
   ) => {
     try {
       const resultAction = await dispatch(registr(values));
