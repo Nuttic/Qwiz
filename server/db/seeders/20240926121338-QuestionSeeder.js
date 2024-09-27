@@ -103,7 +103,7 @@ module.exports = {
           topicId: 3,
           answer: "Тексты песен",
           points: 300,
-          img: "https://cdn.tripster.ru/photos/832d6bcc-2437-4708-abf0-ee5bfc59f355.jpg",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/The_Beatles_members_at_New_York_City_in_1964.jpg/800px-The_Beatles_members_at_New_York_City_in_1964.jpg",
         },
         {
           title:
@@ -111,7 +111,7 @@ module.exports = {
           topicId: 3,
           answer: "Зрачки",
           points: 400,
-          img: "https://s0.rbk.ru/v6_top_pics/media/img/9/20/347035868702209.webp",
+          img: "https://i.pinimg.com/736x/be/26/b9/be26b9b1c7d317f1304549aa92a42f89.jpg",
         },
         {
           title:
