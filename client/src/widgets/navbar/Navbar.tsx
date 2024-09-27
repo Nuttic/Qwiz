@@ -36,13 +36,14 @@ export const Navbar: React.FC = () => {
                 <Link to={ROUTES.TOPICS}>Темы</Link>
               </Button>
             </span>
-            <span className={styles.points}>Очки: {points}</span>
+            <Button className={styles.button}>
+              <span className={styles.points}>Очки: {points}</span>
+            </Button>
           </>
         )}
 
         {user ? (
           <>
-          <span>Текущий счет: {score}</span>
             <Button className={styles.button} onClick={handleLogout}>
               Выход
             </Button>
