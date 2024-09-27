@@ -24,8 +24,10 @@ export function MainPage() {
         <>
           <h1>Привет, {user.name}!</h1>
           <h2>
-            <Link to={ROUTES.TOPICS}>Нажми сюда</Link>, чтобы перейти к выбору
-            темы
+            <Button className={styles.button}>
+              <Link to={ROUTES.TOPICS}>Нажми сюда,</Link>
+            </Button>
+            ← чтобы перейти к выбору темы
           </h2>
         </>
       ) : (
@@ -34,11 +36,11 @@ export function MainPage() {
           <h2>
             Чтобы начать играть,
             <Button className={styles.button}>
-              <Link to={ROUTES.REGISTR}>зарегистрируйся</Link>
+              <Link to={ROUTES.REGISTR}>Зарегистрируйся</Link>
             </Button>
             или
             <Button className={styles.button}>
-              <Link to={ROUTES.LOGIN}>авторизуйся</Link>
+              <Link to={ROUTES.LOGIN}>Авторизуйся</Link>
             </Button>
           </h2>
         </>
