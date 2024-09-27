@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { User } from '.';
-import { refreshAccessToken, login, registr, logout } from './userThunks';
-import { message } from 'antd';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from ".";
+import { refreshAccessToken, login, registr, logout } from "./userThunks";
+import { message } from "antd";
 
 //FIX Что такое слайс?
 //? Слайс в Redux Toolkit — это объект, который объединяет состояние, редукторы и действия, относящиеся к одной функциональной области приложения (например, юзеры).
@@ -9,21 +9,32 @@ import { message } from 'antd';
 //? Определение типа состояния юзера:
 type UserState = {
   user: User | null;
-  error: string | null;
   loading: boolean;
+  error: string | null;
+  points: number;
+  answeredQuestions: number[]; // массив ID отвеченных вопросов
 };
 
 //? Инициализация начального состояния юзера:
 const initialState: UserState = {
   user: null,
-  error: null,
   loading: false,
+  error: null,
+  points: 0,
+  answeredQuestions: [],
 };
 
 const userSlice = createSlice({
-  name: 'user', //? Строка, определяющая имя слайса
+  name: "user", //? Строка, определяющая имя слайса
   initialState, //? Начальное состояние для данной части состояния Redux
-  reducers: {}, //?  reducers - объект, содержащий ТОЛЬКО синхронные функции-редукторы для обновления состояния
+  reducers: {
+    updatePoints: (state, action: PayloadAction<number>) => {
+      state.points += action.payload;
+    },
+    addAnsweredQuestion: (state, action: PayloadAction<number>) => {
+      state.answeredQuestions.push(action.payload);
+    },
+  }, //?  reducers - объект, содержащий ТОЛЬКО синхронные функции-редукторы для обновления состояния
 
   //? extraReducers -  Объект или функция, используемая для обработки асинхронных действий
 
@@ -61,8 +72,8 @@ const userSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to sign in';
-        message.warning(action.payload?.message || 'Failed to sign in');
+        state.error = action.payload?.message || "Failed to sign in";
+        message.warning(action.payload?.message || "Failed to sign in");
       })
 
       //!----------------------------------------------------------------
@@ -76,8 +87,8 @@ const userSlice = createSlice({
       })
       .addCase(registr.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to sign up';
-        message.error(action.payload?.message || 'Failed to sign up');
+        state.error = action.payload?.message || "Failed to sign up";
+        message.error(action.payload?.message || "Failed to sign up");
       })
 
       //!----------------------------------------------------------------
@@ -91,10 +102,12 @@ const userSlice = createSlice({
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to logout';
-        message.error(action.payload?.message || 'Failed to logout');
+        state.error = action.payload?.message || "Failed to logout";
+        message.error(action.payload?.message || "Failed to logout");
       });
   },
 });
+
+export const { updatePoints, addAnsweredQuestion } = userSlice.actions;
 
 export default userSlice.reducer;
