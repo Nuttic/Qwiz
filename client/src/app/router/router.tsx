@@ -48,9 +48,7 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.ERROR,
         element: (
-          <PublicRoute>
             <ErrorPage />
-          </PublicRoute>
         ),
       },
     ],
