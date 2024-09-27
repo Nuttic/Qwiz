@@ -1,13 +1,17 @@
-.topic {
+.question {
     width: 250px;
     background-color: var(--primary-light-gray);
     border: 2px solid var(--secondary-blue-64);
     border-radius: 8px;
     padding: 20px;
-    margin: 25px 0;
+    margin: 25px 25px;
     transition: background-color 0.3s;
 }
 
-.topic:hover {
-    background-color: var(--secondary-blue-64);
+.question:hover {
+    background-color: #e0f7e0;
+}
+
+.container {
+    display: flex;
 }

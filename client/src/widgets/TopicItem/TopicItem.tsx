@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAppSelector } from "@/shared/hooks/reduxHooks";
 import { QuestionItem } from "@/entities/question/ui/QuestiionItem/QuestionItem";
 import ModalWindow from "@/shared/ui/Modal/Modal";
+import styles from "./TopicItem.module.css";
 
 export const TopicItem: React.FC = () => {
   const { topic } = useAppSelector((state) => state.topics);
@@ -13,10 +14,13 @@ export const TopicItem: React.FC = () => {
   const scores = [100, 200, 300, 400, 500];
 
   return (
-    <div>
+    <div className={styles.container}>
       {questions?.map((quest, index) => (
-        <div key={quest.id}>
-          <button onClick={() => setActiveQuestionId(quest.id)}>
+        <div className={styles.que} key={quest.id}>
+          <button
+            className={styles.question}
+            onClick={() => setActiveQuestionId(quest.id)}
+          >
             {scores[index]}
           </button>
 
