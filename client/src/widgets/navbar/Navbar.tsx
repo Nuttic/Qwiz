@@ -1,3 +1,4 @@
+// Navbar.tsx
 import React from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ import { Button } from "antd";
 import { useScore } from "@/app/scoreContext";
 
 export const Navbar: React.FC = () => {
-  const { user, loading } = useAppSelector((state) => state.user);
+  const { user, points } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const { score } = useScore()
@@ -29,11 +30,14 @@ export const Navbar: React.FC = () => {
           </Button>
         </span>
         {user && (
-          <span>
-            <Button className={styles.button}>
-              <Link to={ROUTES.TOPICS}>Темы</Link>
-            </Button>
-          </span>
+          <>
+            <span>
+              <Button className={styles.button}>
+                <Link to={ROUTES.TOPICS}>Темы</Link>
+              </Button>
+            </span>
+            <span className={styles.points}>Очки: {points}</span>
+          </>
         )}
 
         {user ? (
