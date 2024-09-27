@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import styles from "./TopicPage.module.css";
 
 const LazyTopicList = React.lazy(() => import("@/widgets/TopicList"));
-const LazyTopicItem = React.lazy(() => import("@/widgets/TopicItem"));
 
 export function TopicPage() {
   return (
@@ -11,7 +10,6 @@ export function TopicPage() {
       <div className={styles.container}>
         <Suspense fallback={<Loader />}>
           <LazyTopicList />
-          <LazyTopicItem />
         </Suspense>
       </div>
     </>
