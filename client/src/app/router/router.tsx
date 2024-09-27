@@ -3,12 +3,11 @@ import { MainPage, LoginPage, RegistrPage, TopicPage } from "@/pages";
 import { ROUTES } from "./routes";
 
 import Layout from "./layout/Layout";
-import { ProtectedRoute } from "@/shared/ui/ProtectedRoute"
+import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 
 import React from "react";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
 import ErrorPage from "@/pages/error/ErrorPage";
-
 
 export const router = createBrowserRouter([
   {
@@ -42,16 +41,11 @@ export const router = createBrowserRouter([
           <ProtectedRoute>
             <TopicPage />
           </ProtectedRoute>
-
-         ),
-       },
+        ),
+      },
       {
         path: ROUTES.ERROR,
-        element: (
-          <PublicRoute>
-            <ErrorPage />
-          </PublicRoute>
-        ),
+        element: <ErrorPage />,
       },
     ],
   },
