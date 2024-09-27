@@ -10,7 +10,6 @@ import styles from "../MainPage/MainPage.module.css";
 
 export function MainPage() {
   const { user } = useAppSelector((state) => state.user);
-  const { topics, topic } = useAppSelector((state) => state.topics);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

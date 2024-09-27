@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./QuestionItem.module.css";
 import { Question } from "../../model";
+
+import { useScore } from "@/app/scoreContext";
+
 import { Button } from "antd";
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { updatePoints, addAnsweredQuestion } from "@/entities/user";
@@ -10,6 +13,8 @@ type Props = {
 };
 
 export const QuestionItem: React.FC<Props> = ({ question }) => {
+
+    const { incrementScore, decrementScore } = useScore();
   const [userAnswer, setUserAnswer] = useState("");
   const [answer, setAnswer] = useState<boolean | string>("");
   const [isAnswered, setIsAnswered] = useState(false);
@@ -28,6 +33,7 @@ export const QuestionItem: React.FC<Props> = ({ question }) => {
     } else {
       setAnswer(false);
       dispatch(updatePoints(-question.points)); // Уменьшаем очки
+
     }
     dispatch(addAnsweredQuestion(question.id)); // Добавляем ID вопроса в список отвеченных
   };
